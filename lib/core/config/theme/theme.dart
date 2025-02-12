@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 
+import 'app_colors.dart';
+
 final ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
-  scaffoldBackgroundColor: Colors.black,
-  primaryColor: Color(0XFFBC4CF1),
+  scaffoldBackgroundColor: AppColors.neutralBlackProcess,
+  primaryColor: AppColors.primary,
   // primaryColor: Colors.purpleAccent,
   textTheme: TextTheme(
-    bodyLarge: TextStyle(color: Colors.white),
-    bodyMedium: TextStyle(color: Colors.white70),
+    bodyLarge: TextStyle(color: AppColors.primaryWhite),
+    bodyMedium: TextStyle(color: AppColors.neutralGrayMiddle),
   ),
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
     suffixIconColor: Colors.white54,
-    hintStyle: TextStyle(color: Colors.white54),
+    hintStyle: TextStyle(color: AppColors.neutralGrayMiddle50),
     fillColor: Colors.white10,
-    labelStyle: TextStyle(color: Colors.white70),
+    labelStyle: TextStyle(color: AppColors.neutralGrayMiddle),
     border: OutlineInputBorder(
       borderSide: BorderSide(color: Color(0xFF6C6D7A), width: 1),
       borderRadius: BorderRadius.circular(8),
