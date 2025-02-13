@@ -8,4 +8,10 @@ class Strings {
     static const password = "Password";
     static const confirmPassword = "Confirm your Password";
     static const createAccount = "Create Account";
+    static const chooseImage = "Choose image";
+    static const aSquareImage = "A square .jpg, .gif,\nor .png image\n200x200 or larger";
+    static const tellUsMore = "Tell us more!";
+    static const completeYourProfile = "Complete your profile";
+    static const takePhoto = "Take a photo";
+    static const chooseFromGallery = "Choose from gallery";
 }

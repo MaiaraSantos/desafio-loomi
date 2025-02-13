@@ -9,8 +9,9 @@ class AppColors {
   static const Color secondaryDarkPurple = Color(0xffAA73F0);
 
   // -> Neutral <-
-  static const Color neutralBlackProcess = Color(0xff000000);
+  static const Color neutralBlack = Color(0xff000000);
   static const Color neutralGrayMiddle = Color(0xB3FFFFFF);
+  static const Color neutralGrayMiddle70 = Color(0x9CFFFFFF);
   static const Color neutralGrayMiddle50 = Color(0x66AEAEAE);
 
   // -> Other <-
