@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'dart:ui';
 
 import 'package:loomi/presentation/widgets/cutom_primary_button.dart';
+import 'package:loomi/presentation/controllers/movie_controller.dart';
 
 import '../../../core/config/theme/app_assets.dart';
 import '../../../core/config/theme/app_colors.dart';
@@ -12,12 +14,14 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final MovieController controller = Get.find<MovieController>();
+    
     return Scaffold(
       body: SingleChildScrollView(
         child: Stack(
           children: [
             _buildBlurredBackground(),
-            _buildContent(context),
+            _buildContent(context, controller),
           ],
         ),
       ),
@@ -26,22 +30,27 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildBlurredBackground() {
     return Positioned.fill(
-      child: ImageFiltered(
-        imageFilter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: NetworkImage(
-                  'https://untold-strapi-prod.s3.amazonaws.com/large_Down_From_The_Clouds_7aa091f3d7.jpg'),
-              fit: BoxFit.cover,
+      child: Obx(() {
+        if (Get.find<MovieController>().isLoading.value) {
+          return Container(color: Colors.black);
+        }
+        final movie = Get.find<MovieController>().movies.first;
+        return ImageFiltered(
+          imageFilter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(movie.posterUrl),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 
-  Widget _buildContent(BuildContext context) {
+  Widget _buildContent(BuildContext context, MovieController controller) {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -69,21 +78,26 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 15),
-            _buildMovieCard(context),
+            Obx(() {
+              if (controller.isLoading.value) {
+                return Center(child: CircularProgressIndicator());
+              }
+              final movie = controller.movies.first;
+              return _buildMovieCard(context, movie);
+            }),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildMovieCard(BuildContext context) {
+  Widget _buildMovieCard(BuildContext context, movie) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.80,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         image: DecorationImage(
-          image: NetworkImage(
-              'https://untold-strapi-prod.s3.amazonaws.com/large_Down_From_The_Clouds_7aa091f3d7.jpg'),
+          image: NetworkImage(movie.posterUrl),
           fit: BoxFit.cover,
         ),
       ),
@@ -98,15 +112,7 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
-              "Musical",
-              style: TextStyle(
-                color: Colors.white70,
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            Text(
-              "Barbie",
+              "${movie.title}",
               style: TextStyle(
                 fontSize: 32,
                 color: Colors.white,
@@ -115,29 +121,13 @@ class HomeScreen extends StatelessWidget {
             ),
             SizedBox(height: 8),
             Text(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent accumsan in quam id faucibus. Quisque nulla est",
+              movie.description,
               style: TextStyle(
                 color: Colors.white70,
                 fontSize: 14,
               ),
             ),
             SizedBox(height: 20),
-            Text(
-              "Comments 3.333",
-              style: TextStyle(
-                color: Colors.white70,
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            Text(
-              'Lorem ipsum dolor sit amet...',
-              style: TextStyle(
-                color: Colors.white70,
-                fontSize: 12,
-              ),
-            ),
-            SizedBox(height: 40),
             Center(
               child: CustomPrimaryButton(
                 text: 'Watch',
@@ -180,7 +170,7 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      'Avaiable until',
+                      'Available until',
                       style: TextStyle(
                         fontSize: 12,
                       ),

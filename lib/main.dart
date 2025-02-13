@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:loomi/core/config/theme/theme.dart';
-import 'package:loomi/presentation/pages/login/register_page.dart';
 
+import 'core/di/di.dart';
 import 'presentation/pages/home/home_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  DependencyInjection.init();
   runApp(const MyApp());
 }
 
@@ -14,7 +16,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: darkTheme,
       home: HomeScreen(),
     );
