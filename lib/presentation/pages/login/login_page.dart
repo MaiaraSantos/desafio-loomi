@@ -203,7 +203,7 @@ class SignUpSection extends StatelessWidget {
           child: Text(
             Strings.signUp,
             style: TextStyle(
-              color: Colors.purpleAccent,
+              color: AppColors.primary,
               fontSize: 14,
               fontWeight: FontWeight.bold,
             ),

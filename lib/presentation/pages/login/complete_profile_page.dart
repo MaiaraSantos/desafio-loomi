@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loomi/core/config/theme/app_colors.dart';
 
+import '../../../core/config/strings/strings.dart';
 import '../../widgets/custom_text_field.dart';
 import '../../widgets/cutom_primary_button.dart';
 import 'widgets/image_picker_modal.dart';
@@ -33,13 +34,13 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
                     onTap: () => _showImagePickerModal(context),
                   ),
                   CustomTextField(
-                    hintText: "Your name",
+                    hintText: Strings.yourName,
                     keyboardType: TextInputType.text,
                   ),
                   Column(
                     children: [
                       CustomPrimaryButton(
-                        text: "Continue",
+                        text: Strings.continueFlow,
                         onPressed: () {},
                       ),
                       SizedBox(height: 10),
@@ -48,7 +49,7 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
                           Navigator.pop(context);
                         },
                         child: Text(
-                          "Back",
+                          Strings.back,
                           style: TextStyle(
                             color: AppColors.secondaryDarkPurple,
                             fontSize: 14,

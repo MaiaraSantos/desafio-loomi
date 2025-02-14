@@ -24,10 +24,13 @@ class SelectableImageButton extends StatelessWidget {
         width: 120,
         height: 120,
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.primary.withAlpha(51) : Colors.transparent,
+          color:
+              isSelected ? AppColors.primary.withAlpha(51) : Colors.transparent,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isSelected ? AppColors.secondaryDarkPurple : Colors.white60,
+            color: isSelected
+                ? AppColors.secondaryDarkPurple
+                : AppColors.neutralGrayMiddle50,
           ),
         ),
         child: Column(
@@ -35,14 +38,17 @@ class SelectableImageButton extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: isSelected ? AppColors.secondaryDarkPurple : Colors.white60,
+              color: isSelected
+                  ? AppColors.secondaryDarkPurple
+                  : AppColors.neutralGrayMiddle50,
               size: 32,
             ),
             SizedBox(height: 10),
             Text(
               label ?? '',
               style: TextStyle(
-                  color: isSelected ? Colors.white : Colors.white60,
+                  color:
+                      isSelected ? AppColors.primaryWhite : AppColors.neutralGrayMiddle50,
                   fontSize: 14),
               textAlign: TextAlign.center,
             ),

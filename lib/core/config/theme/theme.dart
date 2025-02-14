@@ -6,7 +6,6 @@ final ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
   scaffoldBackgroundColor: AppColors.neutralBlack,
   primaryColor: AppColors.primary,
-  // primaryColor: Colors.purpleAccent,
   textTheme: TextTheme(
     bodyLarge: TextStyle(color: AppColors.primaryWhite),
     bodyMedium: TextStyle(color: AppColors.neutralGrayMiddle),
@@ -15,7 +14,7 @@ final ThemeData darkTheme = ThemeData(
     filled: true,
     suffixIconColor: AppColors.neutralGrayMiddle,
     hintStyle: TextStyle(color: AppColors.neutralGrayMiddle50),
-    fillColor: Colors.white10,
+    fillColor: AppColors.neutralGrayMiddle80,
     labelStyle: TextStyle(color: AppColors.neutralGrayMiddle),
     border: OutlineInputBorder(
       borderSide: BorderSide(color: Color(0xFF6C6D7A), width: 1),

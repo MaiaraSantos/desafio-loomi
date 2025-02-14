@@ -14,8 +14,7 @@ class MovieController extends GetxController {
 
   @override
   void onInit() {
-    authController = Get.find<
-        AuthController>(); // 🔹 Buscar apenas quando o Controller já estiver pronto
+    authController = Get.find<AuthController>();
     super.onInit();
   }
 
@@ -27,8 +26,7 @@ class MovieController extends GetxController {
 
     try {
       isLoading(true);
-      final result = await getMoviesUseCase(
-          authController!.token.value!); // 🔹 Agora passamos o token real
+      final result = await getMoviesUseCase(authController!.token.value!);
       movies.assignAll(result);
     } catch (e) {
       print("Erro ao carregar filmes: $e");

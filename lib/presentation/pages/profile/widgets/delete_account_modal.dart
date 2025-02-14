@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/config/strings/strings.dart';
 import '../../../../core/config/theme/app_colors.dart';
 import '../../../../core/config/theme/spacements.dart';
 
@@ -28,7 +29,7 @@ class DeleteAccountModal extends StatelessWidget {
               ),
               Spacer(),
               Text(
-                'Warning',
+                Strings.warning,
                 style: TextStyle(
                   color: AppColors.primaryWhite,
                   fontSize: 16,
@@ -42,7 +43,7 @@ class DeleteAccountModal extends StatelessWidget {
           Column(
             children: [
               Text(
-                'Are you sure you want to delete your account?',
+                Strings.areYouSureDeleteAccount,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 14,
@@ -52,7 +53,7 @@ class DeleteAccountModal extends StatelessWidget {
               ),
               SizedBox(height: Spacements.S),
               Text(
-                'This action is irreversible and all of your data will be permanently deleted. If you´re having any issues with our app, we´d love to help you resolve them.',
+                Strings.thisActionIsIrreversible,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 14,
@@ -68,11 +69,11 @@ class DeleteAccountModal extends StatelessWidget {
             children: [
               TextButton(
                 onPressed: () {},
-                child: Text('Cancel'),
+                child: Text(Strings.cancel),
               ),
               ElevatedButton(
                 onPressed: () {},
-                child: Text('Delete account'),
+                child: Text(Strings.deleteAccount),
               ),
             ],
           )
