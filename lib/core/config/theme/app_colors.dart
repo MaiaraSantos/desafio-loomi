@@ -14,9 +14,5 @@ class AppColors {
   static const Color neutralGrayMiddle = Color(0xB3FFFFFF);
   static const Color neutralGrayMiddle70 = Color(0x9CFFFFFF);
   static const Color neutralGrayMiddle50 = Color(0x66AEAEAE);
-
-  // -> Other <-
-  static const Color error = Color(0xffDD3435);
-  static const Color success = Color(0xff54B34A);
-  static const Color warning = Color(0xffF3B823);
+  static const Color neutralGrayMiddle80 = Color(0x467A7A7A);
 }

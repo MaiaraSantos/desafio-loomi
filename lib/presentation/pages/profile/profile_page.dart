@@ -15,9 +15,9 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.neutralBlack,
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.neutralBlack,
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
@@ -206,7 +206,7 @@ class ProfilePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "STREAM Premium",
+                    Strings.streamPremium,
                     style: TextStyle(
                       color: AppColors.primaryWhite,
                       fontSize: 16,
@@ -226,7 +226,7 @@ class ProfilePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 8),
             child: Text(
-              "Coming soon",
+              Strings.comingSoon,
               style: TextStyle(
                 color: AppColors.primary,
                 fontSize: 12,

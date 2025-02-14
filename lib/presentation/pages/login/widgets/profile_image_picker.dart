@@ -39,7 +39,7 @@ class ProfileImagePicker extends StatelessWidget {
                 Strings.chooseImage.toUpperCase(),
                 textAlign: TextAlign.left,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: AppColors.primaryWhite,
                   fontWeight: FontWeight.bold,
                   fontSize: 12,
                 ),
@@ -49,7 +49,7 @@ class ProfileImagePicker extends StatelessWidget {
                 Strings.aSquareImage,
                 textAlign: TextAlign.left,
                 style: TextStyle(
-                  color: Colors.white60,
+                  color: AppColors.neutralGrayMiddle50,
                   fontSize: 10,
                 ),
               ),

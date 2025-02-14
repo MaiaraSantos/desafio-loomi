@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:loomi/core/config/theme/spacements.dart';
 import 'package:loomi/presentation/widgets/custom_text_field.dart';
 
+import '../../../../core/config/strings/strings.dart';
 import '../../../../core/config/theme/app_colors.dart';
 
 class ChangePasswordModal extends StatelessWidget {
@@ -26,27 +27,27 @@ class ChangePasswordModal extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Change\nPassword",
+              Strings.changePassword,
               style: TextStyle(
                 fontSize: 26,
                 fontWeight: FontWeight.w700,
                 color: AppColors.primaryWhite,
               ),
             ),
-            _buildPasswordField("Current password"),
+            _buildPasswordField(Strings.currentPassword),
             Divider(),
             Column(
               children: [
-                _buildPasswordField("New password"),
+                _buildPasswordField(Strings.newPassword),
                 SizedBox(height: Spacements.S),
-                _buildPasswordField("Confirm new password"),
+                _buildPasswordField(Strings.confirmNewPassword),
               ],
             ),
             SizedBox(height: 20),
             Center(
               child: ElevatedButton(
                 onPressed: () {},
-                child: Text("Update Password"),
+                child: Text(Strings.updatePassword),
               ),
             ),
           ],

@@ -55,13 +55,11 @@ class ForgotPasswordPage extends StatelessWidget {
                   ),
                   SizedBox(height: Spacements.M),
                   GestureDetector(
-                    onTap: () {
-                      Get.back;
-                    },
+                    onTap: () => Get.back(),
                     child: Text(
                       Strings.back,
                       style: TextStyle(
-                        color: Colors.purpleAccent,
+                        color: AppColors.primary,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),

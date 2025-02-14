@@ -12,7 +12,7 @@ class AuthController extends GetxController {
   final RegisterWithEmailUseCase registerWithEmailUseCase;
 
   Rxn<UserEntity> user = Rxn<UserEntity>();
-  Rxn<String> token = Rxn<String>(); // 🔹 Agora temos um campo `token`
+  Rxn<String> token = Rxn<String>();
 
   AuthController({
     required this.loginWithEmailUseCase,
@@ -23,7 +23,7 @@ class AuthController extends GetxController {
   Future<void> loginWithEmail(String email, String password) async {
     try {
       user.value = await loginWithEmailUseCase(email, password);
-      await _updateToken(); // 🔹 Obtém o token após login
+      await _updateToken();
       Get.offNamed(AppRoutes.home);
     } catch (e) {
       Get.snackbar('Erro', 'Falha no login: $e');
@@ -33,14 +33,15 @@ class AuthController extends GetxController {
   Future<void> loginWithGoogle() async {
     try {
       user.value = await loginWithGoogleUseCase();
-      await _updateToken(); // 🔹 Obtém o token após login com Google
+      await _updateToken();
       Get.offNamed(AppRoutes.home);
     } catch (e) {
       Get.snackbar('Erro', 'Falha no login com Google: $e');
     }
   }
 
-  Future<void> registerWithEmail(String email, String password, String confirmPassword) async {
+  Future<void> registerWithEmail(
+      String email, String password, String confirmPassword) async {
     if (password != confirmPassword) {
       Get.snackbar('Erro', 'As senhas não coincidem.');
       return;
@@ -48,7 +49,7 @@ class AuthController extends GetxController {
 
     try {
       user.value = await registerWithEmailUseCase(email, password);
-      await _updateToken(); // 🔹 Obtém o token após registro
+      await _updateToken();
       Get.offNamed(AppRoutes.home);
     } catch (e) {
       Get.snackbar('Erro', 'Falha no registro: $e');
@@ -57,14 +58,14 @@ class AuthController extends GetxController {
 
   Future<void> logout() async {
     user.value = null;
-    token.value = null; // 🔹 Resetamos o token ao fazer logout
+    token.value = null;
     Get.offAllNamed(AppRoutes.login);
   }
 
   Future<void> _updateToken() async {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      token.value = await user.getIdToken(); // 🔹 Obtém o token do Firebase
+      token.value = await user.getIdToken();
     }
   }
 }
