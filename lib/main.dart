@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:get/get.dart';
 import 'package:loomi/core/config/theme/theme.dart';
+import 'core/config/app_routes.dart';
+import 'core/di/dependency_injection.dart';
 
-import 'core/di/di.dart';
-import 'presentation/pages/home/home_screen.dart';
-
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   DependencyInjection.init();
-  runApp(const MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: darkTheme,
-      home: HomeScreen(),
-    );
-  }
+  runApp(GetMaterialApp(
+    theme: darkTheme,
+    debugShowCheckedModeBanner: false,
+    initialRoute: AppRoutes.register,
+    getPages: AppRoutes.routes,
+  ));
 }

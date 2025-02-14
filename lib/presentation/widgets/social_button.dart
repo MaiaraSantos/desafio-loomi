@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loomi/core/config/theme/app_colors.dart';
+import 'package:loomi/core/config/theme/spacements.dart';
 
 class SocialButton extends StatelessWidget {
   final String iconPath;
@@ -20,10 +22,10 @@ class SocialButton extends StatelessWidget {
         width: 70,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
-          color: Color(0xFFBC4CF1).withAlpha(51),
+          color: AppColors.primary.withAlpha(51),
         ),
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.all(Spacements.M),
           child: SvgPicture.asset(iconPath),
         ),
       ),

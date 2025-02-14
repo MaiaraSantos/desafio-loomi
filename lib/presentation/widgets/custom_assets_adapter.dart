@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../core/config/theme/app_assets.dart';
+import '../../core/config/theme/app_colors.dart';
 
 class CustomAssetAdapter extends StatelessWidget {
   final Key? key;
   final String assetPath;
   final double? height;
   final double? width;
+  final ColorFilter? colorFilter;
   final Color? color;
   final bool isSelected;
   final BoxFit fit;
@@ -20,6 +22,7 @@ class CustomAssetAdapter extends StatelessWidget {
     this.color,
     this.isSelected = false,
     this.fit = BoxFit.contain,
+    this.colorFilter,
   });
 
   @override
@@ -34,7 +37,9 @@ class CustomAssetAdapter extends StatelessWidget {
         height: height,
         width: width,
         fit: fit,
-        color: isSelected ? Colors.white : color,
+        colorFilter: isSelected
+            ? ColorFilter.mode(AppColors.primaryWhite, BlendMode.srcIn)
+            : colorFilter,
       );
     }
 
@@ -43,7 +48,7 @@ class CustomAssetAdapter extends StatelessWidget {
       height: height,
       width: width,
       fit: fit,
-      color: isSelected ? Colors.white : color,
+      color: isSelected ? AppColors.primaryWhite : color,
     );
   }
 }
