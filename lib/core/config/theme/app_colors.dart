@@ -7,6 +7,7 @@ class AppColors {
 
   // -> Secondary <-
   static const Color secondaryDarkPurple = Color(0xffAA73F0);
+  static const Color secondaryDarkPurpleStrong = Color(0xFF592C93);
 
   // -> Neutral <-
   static const Color neutralBlack = Color(0xff000000);

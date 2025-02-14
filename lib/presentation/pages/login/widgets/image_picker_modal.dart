@@ -5,17 +5,17 @@ import '../../../../core/config/theme/app_colors.dart';
 import 'selectable_image_button.dart';
 
 class ImagePickerModal extends StatefulWidget {
+  const ImagePickerModal({
+    super.key,
+    required this.onCameraTap,
+    required this.onGalleryTap,
+  });
+  
   final VoidCallback onCameraTap;
   final VoidCallback onGalleryTap;
 
-  const ImagePickerModal({
-    required this.onCameraTap,
-    required this.onGalleryTap,
-    super.key,
-  });
-
   @override
-  _ImagePickerModalState createState() => _ImagePickerModalState();
+  State<ImagePickerModal> createState() => _ImagePickerModalState();
 }
 
 class _ImagePickerModalState extends State<ImagePickerModal> {

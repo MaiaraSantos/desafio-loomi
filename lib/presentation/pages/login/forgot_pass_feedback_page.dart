@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:loomi/presentation/pages/login/login_page.dart';
 
 import '../../../core/config/strings/strings.dart';
 import '../../../core/config/theme/app_assets.dart';
@@ -45,7 +47,9 @@ class ForgotPassFeedbackPage extends StatelessWidget {
                 children: [
                   CustomPrimaryButton(
                     text: Strings.login,
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(LoginPage());
+                    },
                   ),
                   SizedBox(height: Spacements.M),
                 ],

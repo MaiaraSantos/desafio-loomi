@@ -36,7 +36,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             ? IconButton(
                 icon: Icon(
                   _obscureText ? Icons.visibility : Icons.visibility_off,
-                  color: AppColors.neutralGrayMiddle,
+                  color: AppColors.neutralGrayMiddle50,
                 ),
                 onPressed: () {
                   setState(() {

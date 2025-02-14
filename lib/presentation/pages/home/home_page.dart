@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:loomi/presentation/pages/profile/profile_page.dart';
 
 import 'package:loomi/presentation/widgets/cutom_primary_button.dart';
 
@@ -303,9 +305,12 @@ class HeaderSection extends StatelessWidget {
       children: [
         SizedBox(),
         SvgPicture.asset(AppAssets.loomiSmallLogo),
-        CircleAvatar(
-          backgroundImage: NetworkImage(
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0bVGAU1OlTWgDdLzq6RNS-TklEfg8LQoAzg&s"),
+        GestureDetector(
+          child: CircleAvatar(
+            backgroundImage: NetworkImage(
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0bVGAU1OlTWgDdLzq6RNS-TklEfg8LQoAzg&s"),
+          ),
+          onTap: ()=>  Get.to(ProfilePage()),
         ),
       ],
     );
