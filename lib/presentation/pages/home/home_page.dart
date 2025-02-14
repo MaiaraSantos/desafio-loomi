@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'dart:ui';
 
 import 'package:loomi/presentation/widgets/cutom_primary_button.dart';
 
@@ -14,11 +13,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //final MovieController controller = Get.find<MovieController>();
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Stack(
           children: [
             _buildBlurredBackground(),
+            //_buildContent(context, controller),
             _buildContent(context),
           ],
         ),
@@ -28,39 +30,51 @@ class HomePage extends StatelessWidget {
 
   Widget _buildBlurredBackground() {
     return Positioned.fill(
-      child: ImageFiltered(
-        imageFilter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: NetworkImage(
-                  'https://untold-strapi-prod.s3.amazonaws.com/large_Down_From_The_Clouds_7aa091f3d7.jpg'),
-              fit: BoxFit.cover,
-            ),
+      child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+                "https://upload.wikimedia.org/wikipedia/en/8/8a/Dune_%282021_film%29.jpg"), // 🔹 Mock de imagem
+            fit: BoxFit.cover,
           ),
         ),
       ),
     );
   }
 
-  Widget _buildContent(BuildContext context) {
+  //Widget _buildBlurredBackground() {
+  //   return Positioned.fill(
+  // child: Obx(() {
+  //     if (Get.find<MovieController>().isLoading.value) {
+  //         return Container(color: Colors.black);
+  // }
+  //final movie = Get.find<MovieController>().movies.first;
+  //  return ImageFiltered(
+  //      imageFilter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+  //        child: Container(
+  //    decoration: BoxDecoration(
+  //        image: DecorationImage(
+  //            image: NetworkImage(movie.posterUrl),
+  //              fit: BoxFit.cover,
+  // ),
+  // ),
+  // ),
+  // );
+  // }),
+  // );
+  // }
+
+  Widget _buildContent(
+    BuildContext context,
+    //MovieController controller,
+  ) {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(Spacements.S),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(),
-                SvgPicture.asset(AppAssets.loomiSmallLogo),
-                CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0bVGAU1OlTWgDdLzq6RNS-TklEfg8LQoAzg&s"),
-                ),
-              ],
-            ),
+            HeaderSection(),
             SizedBox(height: Spacements.M),
             Text(
               Strings.nowShowing,
@@ -70,15 +84,25 @@ class HomePage extends StatelessWidget {
                 color: AppColors.primaryWhite,
               ),
             ),
-            SizedBox(height: Spacements.S),
+            SizedBox(height: 15),
             _buildMovieCard(context),
+            //Obx(() {
+            //if (controller.isLoading.value) {
+            //return Center(child: CircularProgressIndicator());
+            //}
+            //final movie = controller.movies.first;
+            //return _buildMovieCard(context, movie);
+            //}),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildMovieCard(BuildContext context) {
+  Widget _buildMovieCard(
+    BuildContext context,
+    //movie,
+  ) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.80,
       decoration: BoxDecoration(
@@ -86,6 +110,7 @@ class HomePage extends StatelessWidget {
         image: DecorationImage(
           image: NetworkImage(
               'https://untold-strapi-prod.s3.amazonaws.com/large_Down_From_The_Clouds_7aa091f3d7.jpg'),
+          //image: NetworkImage(movie.posterUrl),
           fit: BoxFit.cover,
         ),
       ),
@@ -99,46 +124,9 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Text(
-              "Musical",
-              style: TextStyle(
-                color: AppColors.neutralGrayMiddle50,
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            Text(
-              'Barbie',
-              style: TextStyle(
-                fontSize: 32,
-                color: AppColors.primaryWhite,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent accumsan in quam id faucibus. Quisque nulla est',
-              style: TextStyle(
-                color: AppColors.neutralGrayMiddle50,
-                fontSize: 14,
-              ),
-            ),
+            MovieInfoSection(),
             SizedBox(height: Spacements.M),
-            Text(
-              'Comments 3.333',
-              style: TextStyle(
-                color: AppColors.neutralGrayMiddle50,
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            Text(
-              'Lorem ipsum dolor sit amet...',
-              style: TextStyle(
-                color: AppColors.neutralGrayMiddle50,
-                fontSize: 12,
-              ),
-            ),
+            CommentsSection(),
             SizedBox(height: Spacements.XL),
             Center(
               child: CustomPrimaryButton(
@@ -149,59 +137,177 @@ class HomePage extends StatelessWidget {
             SizedBox(height: Spacements.XL),
             Divider(color: AppColors.neutralGrayMiddle),
             SizedBox(height: Spacements.M),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: [
-                    Icon(
-                      Icons.thumb_up_alt_outlined,
-                      size: 18,
-                    ),
-                    Text(
-                      'Fev 29, 2023',
-                      style: TextStyle(fontSize: 10),
-                    ),
-                  ],
-                ),
-                SizedBox(width: 25),
-                Column(
-                  children: [
-                    Icon(
-                      Icons.send_outlined,
-                      size: 18,
-                    ),
-                    Text(
-                      'Fev 29, 2023',
-                      style: TextStyle(fontSize: 10),
-                    ),
-                  ],
-                ),
-                Spacer(),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      Strings.avaiableUntil,
-                      style: TextStyle(
-                        fontSize: 12,
-                      ),
-                    ),
-                    Text(
-                      'Fev 29, 2023',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.secondaryDarkPurple,
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            )
+            MovieFooter(),
           ],
         ),
       ),
+    );
+  }
+}
+
+class MovieFooter extends StatelessWidget {
+  const MovieFooter({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          children: [
+            Icon(
+              Icons.thumb_up_alt_outlined,
+              size: 18,
+            ),
+            Text(
+              'Fev 29, 2023',
+              style: TextStyle(fontSize: 10),
+            ),
+          ],
+        ),
+        SizedBox(width: 25),
+        Column(
+          children: [
+            Icon(
+              Icons.send_outlined,
+              size: 18,
+            ),
+            Text(
+              'Fev 29, 2023',
+              style: TextStyle(fontSize: 10),
+            ),
+          ],
+        ),
+        Spacer(),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(
+              'Available until',
+              style: TextStyle(
+                fontSize: 12,
+              ),
+            ),
+            Text(
+              'Fev 29, 2023',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: AppColors.secondaryDarkPurple,
+              ),
+            ),
+          ],
+        )
+      ],
+    );
+  }
+}
+
+class CommentsSection extends StatelessWidget {
+  const CommentsSection({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Comments 3.333',
+          style: TextStyle(
+            color: AppColors.primaryWhite,
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        Text(
+          'Lorem ipsum dolor sit amet...',
+          style: TextStyle(
+            color: AppColors.primaryWhite,
+            fontSize: 12,
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class MovieInfoSection extends StatelessWidget {
+  const MovieInfoSection({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Musical",
+          style: TextStyle(
+            color: AppColors.primaryWhite,
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        SizedBox(height: Spacements.XS),
+        Text(
+          'Barbie',
+          style: TextStyle(
+            fontSize: 32,
+            color: AppColors.primaryWhite,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        SizedBox(height: Spacements.XS),
+        Text(
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent accumsan in quam id faucibus. Quisque nulla est',
+          style: TextStyle(
+            color: AppColors.primaryWhite,
+            fontSize: 14,
+          ),
+        ),
+        //          Text(
+        //          "${movie.title}",
+        //        style: TextStyle(
+        //        fontSize: 32,
+        //      color: AppColors.primaryWhite,
+        //    fontWeight: FontWeight.w600,
+        //            ),
+        //        ),
+        //      SizedBox(height: 8),
+        //    Text(
+        //    movie.description,
+        //  style: TextStyle(
+        //  color: AppColors.neutralGrayMiddle50,
+        //fontSize: 14,
+        //           ),
+        //       ),
+      ],
+    );
+  }
+}
+
+class HeaderSection extends StatelessWidget {
+  const HeaderSection({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        SizedBox(),
+        SvgPicture.asset(AppAssets.loomiSmallLogo),
+        CircleAvatar(
+          backgroundImage: NetworkImage(
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0bVGAU1OlTWgDdLzq6RNS-TklEfg8LQoAzg&s"),
+        ),
+      ],
     );
   }
 }

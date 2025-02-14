@@ -47,7 +47,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         fontSize: 14,
                       ),
                     ),
-                    SizedBox(height: Spacements.XS),
+                    SizedBox(width: Spacements.XS),
                     GestureDetector(
                       onTap: () {
                         Get.toNamed('/login');
