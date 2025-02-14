@@ -13,7 +13,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.neutralBlackProcess, // Cor de fundo da Splash
+      backgroundColor: AppColors.neutralBlack,
       body: Center(
         child: SvgPicture.asset(
           AppAssets.loomiSmallLogo,

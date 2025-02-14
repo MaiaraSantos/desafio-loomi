@@ -19,4 +19,10 @@ class Strings {
     static const theInstructionsWereSent = "The instructions were sent!";
     static const pleaseCheckYourEmail = "If this was a valid email, instructions to reset your password will be sent to you. Please check your email.";
     static const login = "Login";
+    static const chooseImage = "Choose image";
+    static const aSquareImage = "A square .jpg, .gif,\nor .png image\n200x200 or larger";
+    static const tellUsMore = "Tell us more!";
+    static const completeYourProfile = "Complete your profile";
+    static const takePhoto = "Take a photo";
+    static const chooseFromGallery = "Choose from gallery";
 }

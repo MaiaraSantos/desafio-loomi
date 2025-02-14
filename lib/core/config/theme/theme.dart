@@ -4,7 +4,7 @@ import 'app_colors.dart';
 
 final ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
-  scaffoldBackgroundColor: AppColors.neutralBlackProcess,
+  scaffoldBackgroundColor: AppColors.neutralBlack,
   primaryColor: AppColors.primary,
   // primaryColor: Colors.purpleAccent,
   textTheme: TextTheme(
