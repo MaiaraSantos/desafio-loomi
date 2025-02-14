@@ -4,11 +4,13 @@ import 'dart:ui';
 
 import 'package:loomi/presentation/widgets/cutom_primary_button.dart';
 
+import '../../../core/config/strings/strings.dart';
 import '../../../core/config/theme/app_assets.dart';
 import '../../../core/config/theme/app_colors.dart';
+import '../../../core/config/theme/spacements.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class HomeScreen extends StatelessWidget {
   Widget _buildContent(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(Spacements.S),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -59,16 +61,16 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            SizedBox(height: Spacements.M),
             Text(
-              "Now Showing",
+              Strings.nowShowing,
               style: TextStyle(
                 fontSize: 21,
                 fontWeight: FontWeight.w700,
-                color: Colors.white,
+                color: AppColors.primaryWhite,
               ),
             ),
-            SizedBox(height: 15),
+            SizedBox(height: Spacements.S),
             _buildMovieCard(context),
           ],
         ),
@@ -80,7 +82,7 @@ class HomeScreen extends StatelessWidget {
     return Container(
       height: MediaQuery.of(context).size.height * 0.80,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(Spacements.S),
         image: DecorationImage(
           image: NetworkImage(
               'https://untold-strapi-prod.s3.amazonaws.com/large_Down_From_The_Clouds_7aa091f3d7.jpg'),
@@ -88,10 +90,10 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       child: Container(
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.all(Spacements.S),
         decoration: BoxDecoration(
           color: AppColors.neutralBlackProcess.withAlpha(150),
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(Spacements.S),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,32 +102,32 @@ class HomeScreen extends StatelessWidget {
             Text(
               "Musical",
               style: TextStyle(
-                color: Colors.white70,
+                color: AppColors.neutralGrayMiddle50,
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
               ),
             ),
             Text(
-              "Barbie",
+              'Barbie',
               style: TextStyle(
                 fontSize: 32,
-                color: Colors.white,
+                color: AppColors.primaryWhite,
                 fontWeight: FontWeight.w600,
               ),
             ),
             SizedBox(height: 8),
             Text(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent accumsan in quam id faucibus. Quisque nulla est",
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent accumsan in quam id faucibus. Quisque nulla est',
               style: TextStyle(
-                color: Colors.white70,
+                color: AppColors.neutralGrayMiddle50,
                 fontSize: 14,
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: Spacements.M),
             Text(
-              "Comments 3.333",
+              'Comments 3.333',
               style: TextStyle(
-                color: Colors.white70,
+                color: AppColors.neutralGrayMiddle50,
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
               ),
@@ -133,20 +135,20 @@ class HomeScreen extends StatelessWidget {
             Text(
               'Lorem ipsum dolor sit amet...',
               style: TextStyle(
-                color: Colors.white70,
+                color: AppColors.neutralGrayMiddle50,
                 fontSize: 12,
               ),
             ),
-            SizedBox(height: 40),
+            SizedBox(height: Spacements.XL),
             Center(
               child: CustomPrimaryButton(
-                text: 'Watch',
+                text: Strings.watch,
                 onPressed: () {},
               ),
             ),
-            SizedBox(height: 40),
-            Divider(color: Colors.white70),
-            SizedBox(height: 20),
+            SizedBox(height: Spacements.XL),
+            Divider(color: AppColors.neutralGrayMiddle),
+            SizedBox(height: Spacements.M),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -180,7 +182,7 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      'Avaiable until',
+                      Strings.avaiableUntil,
                       style: TextStyle(
                         fontSize: 12,
                       ),

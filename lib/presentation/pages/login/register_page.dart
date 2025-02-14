@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:loomi/core/config/theme/app_assets.dart';
-
+import 'package:get/get.dart';
+import 'package:loomi/core/config/theme/app_colors.dart';
+import 'package:loomi/core/config/theme/spacements.dart';
+import '../../controllers/auth_controller.dart';
+import '../../../core/config/theme/app_assets.dart';
 import '../../../core/config/strings/strings.dart';
 import '../../widgets/custom_text_field.dart';
 import '../../widgets/cutom_primary_button.dart';
@@ -15,35 +18,44 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final AuthController authController = Get.find<AuthController>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24),
+            padding: EdgeInsets.symmetric(horizontal: Spacements.M),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 20),
+                SizedBox(height: Spacements.M),
                 SvgPicture.asset(AppAssets.loomiLogo),
-                SizedBox(height: 12),
+                SizedBox(height: Spacements.S),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       Strings.alreadyHaveAccount,
-                      style: TextStyle(color: Colors.white54, fontSize: 14),
+                      style: TextStyle(
+                        color: AppColors.neutralGrayMiddle,
+                        fontSize: 14,
+                      ),
                     ),
-                    SizedBox(width: 5),
+                    SizedBox(height: Spacements.XS),
                     GestureDetector(
                       onTap: () {
-                        //   Get.toNamed('/login');
+                        Get.toNamed('/login');
                       },
                       child: Text(
                         Strings.signIn,
                         style: TextStyle(
-                          color: Colors.purpleAccent,
+                          color: AppColors.primary,
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                         ),
@@ -51,85 +63,82 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ],
                 ),
-                SizedBox(height: 40),
+                SizedBox(height: Spacements.XL),
                 Text(
                   Strings.createAnAccount,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: AppColors.primaryWhite,
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 10),
-                Text(
-                  Strings.completeYourAccountRegistration,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white60,
-                    fontSize: 14,
-                  ),
-                ),
-                SizedBox(height: 20),
+                SizedBox(height: Spacements.M),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SocialButton(
                       iconPath: AppAssets.googleIcon,
-                      onTap: () {},
-                    ),
-                    SizedBox(width: 20),
-                    SocialButton(
-                      iconPath: AppAssets.appleIcon,
-                      onTap: () {},
+                      onTap: () {
+                        authController.loginWithGoogle();
+                      },
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: Spacements.M),
                 Row(
                   children: [
                     Expanded(
                       child: Divider(
-                        color: Colors.white54, // Cor da linha
-                        thickness: 1, // Espessura
+                        color: AppColors.neutralGrayMiddle,
+                        thickness: 1,
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 8.0), // Espaçamento do texto
+                      padding: EdgeInsets.symmetric(horizontal: Spacements.XS),
                       child: Text(
                         Strings.signUpWith,
                         style: TextStyle(
-                          color: Colors.white.withAlpha(204),
+                          color: AppColors.primaryWhite.withAlpha(204),
                           fontSize: 12,
                         ),
                       ),
                     ),
                     Expanded(
                       child: Divider(
-                        color: Colors.white54,
+                        color: AppColors.neutralGrayMiddle,
                         thickness: 1,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: Spacements.M),
                 CustomTextField(
+                  controller: emailController,
                   hintText: Strings.email,
+                  keyboardType: TextInputType.text,
                 ),
-                SizedBox(height: 15),
+                SizedBox(height: Spacements.S),
                 CustomTextField(
-                  hintText: Strings.password,
-                  isPassword: true,
-                ),
-                SizedBox(height: 15),
+                    controller: passwordController,
+                    hintText: Strings.password,
+                    keyboardType: TextInputType.text,
+                    isPassword: true),
+                SizedBox(height: Spacements.S),
                 CustomTextField(
-                  hintText: Strings.confirmPassword,
-                  isPassword: true,
-                ),
-                SizedBox(height: 25),
+                    controller: confirmPasswordController,
+                    hintText: Strings.confirmPassword,
+                    keyboardType: TextInputType.text,
+                    isPassword: true),
+                SizedBox(height: Spacements.M),
                 CustomPrimaryButton(
                   text: Strings.createAccount,
-                  onPressed: () {},
+                  onPressed: () {
+                    authController.registerWithEmail(
+                      emailController.text.trim(),
+                      passwordController.text.trim(),
+                      confirmPasswordController.text.trim(),
+                    );
+                  },
                 ),
               ],
             ),
