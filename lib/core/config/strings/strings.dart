@@ -25,4 +25,14 @@ class Strings {
     static const completeYourProfile = "Complete your profile";
     static const takePhoto = "Take a photo";
     static const chooseFromGallery = "Choose from gallery";
+    static const editProfile = "Edit Profile";
+    static const hello = "Hello";
+    static const changePassword = "Change Password";
+    static const deleteMyAccount = "Delete my account";
+    static const subscriptions = "Subscriptions";
+    static const history = "History";
+    static const logOut = "Log out";
+    static const back = "Back";
+    static const sendResetInstructions = "Send reset instructions";
+    static const emailToResetPassword = "Enter the email address you used when you joined and we’ll send you instructions to reset your password.";
 }

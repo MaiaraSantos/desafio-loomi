@@ -9,6 +9,7 @@ import '../../../core/config/strings/strings.dart';
 import '../../widgets/custom_text_field.dart';
 import '../../widgets/cutom_primary_button.dart';
 import '../../widgets/social_button.dart';
+import 'forgot_password_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -129,7 +130,7 @@ class LoginForm extends StatelessWidget {
         SizedBox(height: Spacements.XS),
         GestureDetector(
           onTap: () {
-            // TODO: Implementar recuperação de senha
+            Get.to(ForgotPasswordPage());
           },
           child: Text(
             Strings.forgotPassword,
