@@ -32,7 +32,10 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
                   ProfileImagePicker(
                     onTap: () => _showImagePickerModal(context),
                   ),
-                  CustomTextField(hintText: "Your name"),
+                  CustomTextField(
+                    hintText: "Your name",
+                    keyboardType: TextInputType.text,
+                  ),
                   Column(
                     children: [
                       CustomPrimaryButton(

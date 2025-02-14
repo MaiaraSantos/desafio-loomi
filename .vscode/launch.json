@@ -8,19 +8,22 @@
         {
             "name": "loomi",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            //"toolArgs": ["--verbose"],
         },
         {
             "name": "loomi (profile mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "flutterMode": "profile",
+            //"toolArgs": ["--verbose"],
         },
         {
             "name": "loomi (release mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "flutterMode": "release",
+            //"toolArgs": ["--verbose"],
         }
     ]
 }

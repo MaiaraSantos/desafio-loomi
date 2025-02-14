@@ -13,7 +13,7 @@ final ThemeData darkTheme = ThemeData(
   ),
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
-    suffixIconColor: Colors.white54,
+    suffixIconColor: AppColors.neutralGrayMiddle,
     hintStyle: TextStyle(color: AppColors.neutralGrayMiddle50),
     fillColor: Colors.white10,
     labelStyle: TextStyle(color: AppColors.neutralGrayMiddle),
