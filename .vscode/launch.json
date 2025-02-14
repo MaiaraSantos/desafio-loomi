@@ -9,21 +9,21 @@
             "name": "loomi",
             "request": "launch",
             "type": "dart",
-            "toolArgs": ["--verbose"],
+            //"toolArgs": ["--verbose"],
         },
         {
             "name": "loomi (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile",
-            "toolArgs": ["--verbose"],
+            //"toolArgs": ["--verbose"],
         },
         {
             "name": "loomi (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release",
-            "toolArgs": ["--verbose"],
+            //"toolArgs": ["--verbose"],
         }
     ]
 }

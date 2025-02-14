@@ -6,7 +6,7 @@ class GetMoviesUseCase {
 
   GetMoviesUseCase({required this.repository});
 
-  Future<List<Movie>> call() async {
-    return await repository.getMovies();
+  Future<List<Movie>> call(String token) async {
+    return await repository.getMovies(token);
   }
 }

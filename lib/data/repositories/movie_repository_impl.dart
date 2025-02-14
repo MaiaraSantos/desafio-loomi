@@ -1,28 +1,41 @@
-import 'package:loomi/data/datasources/movie_remote_datasource.dart';
-import 'package:loomi/domain/entities/movie.dart';
-import 'package:loomi/domain/repositories/movie_repository.dart';
-import 'package:loomi/data/models/movie_model.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import '../../domain/entities/movie.dart';
+import '../../domain/repositories/movie_repository.dart';
+import '../models/movie_model.dart';
 
 class MovieRepositoryImpl implements MovieRepository {
-  final MovieRemoteDataSource remoteDataSource;
-
-  MovieRepositoryImpl({required this.remoteDataSource});
+  final String baseUrl = "https://untold-strapi.api.prod.loomi.com.br/api";
 
   @override
-  Future<List<Movie>> getMovies() async {
+  Future<List<Movie>> getMovies(String token) async {
     try {
-      final List<MovieModel> movieModels = await remoteDataSource.getMovies("TOKEN_AQUI");
-      
-      final List<Movie> movies = movieModels.map((movieModel) => Movie(
-        id: movieModel.id,
-        title: movieModel.title,
-        description: movieModel.description,
-        posterUrl: movieModel.posterUrl,
-      )).toList();
+      final response = await http.get(
+        Uri.parse('$baseUrl/movies?populate=poster'),
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Content-Type': 'application/json',
+        },
+      );
 
-      return movies;
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        final List movies = data['data'];
+
+        return movies.map((movie) {
+          final movieModel = MovieModel.fromJson(movie);
+          return Movie(
+            id: movieModel.id,
+            title: movieModel.title,
+            description: movieModel.description,
+            posterUrl: movieModel.posterUrl,
+          );
+        }).toList();
+      } else {
+        throw Exception('Erro ao buscar filmes: ${response.statusCode}');
+      }
     } catch (e) {
-      throw Exception("Erro ao recuperar filmes");
+      throw Exception('Erro ao recuperar filmes: $e');
     }
   }
 }
